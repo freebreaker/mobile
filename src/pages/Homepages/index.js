@@ -21,6 +21,7 @@ class Homepage extends Component{
       }
 
       componentWillMount(){
+          console.log(store.getState())
         this.state.ifShowModal = store.getState().update.ifShowModal
       }
 

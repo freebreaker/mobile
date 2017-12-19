@@ -1,5 +1,6 @@
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import totalReducer from "../reducers";
+import thunk from 'redux-thunk';
 
 
 
@@ -8,7 +9,7 @@ import totalReducer from "../reducers";
 //     return store
 // }   
 
-const store =  createStore(totalReducer,{});
+const store =  createStore(totalReducer,{},applyMiddleware(thunk));
 
 export default store
 

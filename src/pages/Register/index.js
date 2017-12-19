@@ -2,11 +2,22 @@ import React, { Component } from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import axios from 'axios'
 import "./Register.css"
+import { applyMiddleware,createStore } from 'redux'
+import {fetchData} from '../../action'
+import reducers from '../../reducers'
+import thunk from 'redux-thunk';
+import store from '../../store'
 const FormItem = Form.Item;
 // import FormRegister from "./FormRegister"
 
 class Register extends Component{
 
+    login(){
+        console.log(9)
+        store.dispatch(fetchData())
+        console.log(store.getState())
+
+    }
 
     componentWillMount(){
         console.log(this.props)
@@ -21,7 +32,7 @@ class Register extends Component{
             
             console.log(values)
 
-            axios.post('http://localhost:3002/user', values)
+            axios.post('http://localhost:3003/user', values)
               .then(function (response) {
                 console.log(response);
                 history.push("/home")
@@ -37,6 +48,8 @@ class Register extends Component{
         const { getFieldDecorator } = this.props.form;
 
         return (
+            <div>
+            <Button onClick={this.login.bind(this)}>test</Button>
             <Form onSubmit={this.handleSubmit} className="login-form">
                 <FormItem>
                     {getFieldDecorator('userName', {
@@ -66,6 +79,7 @@ class Register extends Component{
                     <a href="">注册</a>
                     </FormItem>
                 </Form>
+            </div>
         );
       }
 }
